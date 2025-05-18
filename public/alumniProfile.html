@@ -1,0 +1,79 @@
+<!-- This HTML file displays the profile of an alumni -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"> <!-- Character encoding for the document -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Responsive design settings -->
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alumni Profile</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            margin: 0;
+            padding: 20px;
+            color: #333;
+        }
+        h1 {
+            text-align: center;
+            color: #2c3e50;
+        }
+        .profile-info {
+            max-width: 600px;
+            margin: 0 auto;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .profile-info p {
+            margin: 10px 0;
+            font-size: 16px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Alumni Profile</h1> <!-- Main heading for the profile page -->
+    <div class="profile-info" id="profileInfo"></div> <!-- Container for displaying profile information -->
+
+
+
+    <script>
+        // Get user ID from the URL parameters
+        const params = new URLSearchParams(window.location.search); 
+
+        const userId = params.get('userId');
+
+        // Function to fetch the profile data from the API
+        async function fetchProfile() { 
+
+            const response = await fetch(`/api/profile?userId=${userId}`);
+            // Check if the response is successful
+            if (response.ok) { 
+
+                const profile = await response.json();
+                // Display the profile information in the profileInfo div
+                document.getElementById('profileInfo').innerHTML = ` 
+
+                    <p><strong>Full Name:</strong> ${profile.fullName}</p>
+                    <p><strong>Batch:</strong> ${profile.batch}</p>
+                    <p><strong>Department:</strong> ${profile.department}</p>
+                    <p><strong>Phone Number:</strong> ${profile.phoneNumber}</p>
+                    <p><strong>Email:</strong> ${profile.email}</p>
+                    <p><strong>Job Title:</strong> ${profile.jobTitle}</p>
+                    <p><strong>Company:</strong> ${profile.place}</p>
+                `;
+            } else { 
+
+                const errorText = await response.text();
+                document.getElementById('profileInfo').innerHTML = 'Error fetching profile: ' + errorText;
+            }
+        }
+
+        // Call the function to fetch the profile data
+        fetchProfile(); 
+
+    </script>
+</body>
+</html>

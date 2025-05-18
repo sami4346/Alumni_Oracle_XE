@@ -1,0 +1,132 @@
+<!-- This HTML file serves as the home page for the alumni application -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"> <!-- Character encoding for the document -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Responsive design settings -->
+    <title>Alumni Home</title> <!-- Title of the page -->
+    <style>
+        /* Basic styling for the body */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            margin: 0;
+            padding: 20px;
+            color: #333;
+        }
+        h1 {
+            text-align: center; /* Center the heading */
+            color: #2c3e50; /* Heading color */
+        }
+        .signup-button {
+            position: absolute; /* Positioning for the signup button */
+            top: 25px; /* Distance from the top */
+            right: 40px; /* Distance from the right */
+        }
+        .signup-button a {
+            display: inline-block; /* Display as inline block */
+            padding: 8px 10px; /* Padding inside the button */
+            background-color: #2c3e50; /* Button background color */
+            color: white; /* Button text color */
+            text-decoration: none; /* Remove underline from link */
+            border-radius: 4px; /* Rounded corners */
+            font-size: 16px; /* Font size */
+        }
+        .signup-button a:hover {
+            background-color: #1e5b94; /* Darker background on hover */
+        }
+        .alumni-container {
+            display: flex; /* Use flexbox for layout */
+            flex-wrap: wrap; /* Allow wrapping of items */
+            gap: 20px; /* Space between alumni cards */
+            margin-top: 20px; /* Space above the alumni container */
+        }
+        .alumni-card {
+            background: white; /* Background color for alumni cards */
+            border-radius: 8px; /* Rounded corners */
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Shadow effect */
+            padding: 20px; /* Padding inside the card */
+            width: calc(33.333% - 20px); /* Width of the card */
+            box-sizing: border-box; /* Include padding in width calculation */
+        }
+        .alumni-card table {
+            width: 100%; /* Full width table */
+            border-collapse: collapse; /* Collapse borders */
+        }
+        .alumni-card th, .alumni-card td {
+            padding: 8px; /* Padding inside table cells */
+            text-align: left; /* Align text to the left */
+            border-bottom: 1px solid #ddd; /* Bottom border for cells */
+        }
+        .alumni-card th {
+            background-color: #2c3e50; /* Background color for header cells */
+            color: white; /* Text color for header cells */
+        }
+    </style>
+</head>
+<body>
+    <div class="signup-button">
+        <a href="/signup.html">Fill up the form to become an Alumni</a> <!-- Link to the signup form -->
+    </div>
+
+    <h1>Alumni List</h1> <!-- Main heading for the alumni list -->
+    <div class="alumni-container" id="alumniContainer">
+        <!-- Alumni cards will be populated here -->
+    </div>
+
+    <script>
+        // Function to fetch all alumni data from the API
+        async function fetchAlumni() {
+            const response = await fetch('/api/alumni'); // Fetch all alumni data
+            if (response.ok) {
+                const alumniList = await response.json(); // Parse the JSON response
+                const container = document.getElementById('alumniContainer'); // Get the alumni container
+
+                // Create and append alumni cards for each alumni
+                alumniList.forEach(alumni => {
+                    const card = document.createElement('div'); // Create a new card element
+                    card.className = 'alumni-card'; // Assign the alumni card class
+                    card.innerHTML = `
+                        <table>
+                            <tr>
+                                <th>Full Name</th>
+                                <td>${alumni.FULL_NAME}</td>
+                            </tr>
+                            <tr>
+                                <th>Batch</th>
+                                <td>${alumni.BATCH}</td>
+                            </tr>
+                            <tr>
+                                <th>Department</th>
+                                <td>${alumni.DEPARTMENT}</td>
+                            </tr>
+                            <tr>
+                                <th>Phone Number</th>
+                                <td>${alumni.PHONE_NUMBER}</td>
+                            </tr>
+                            <tr>
+                                <th>Email</th>
+                                <td>${alumni.EMAIL}</td>
+                            </tr>
+                            <tr>
+                                <th>Job Title</th>
+                                <td>${alumni.JOB_TITLE}</td>
+                            </tr>
+                            <tr>
+                                <th>Company</th>
+                                <td>${alumni.PLACE}</td>
+                            </tr>
+                        </table>
+                    `;
+                    container.appendChild(card); // Append the card to the container
+                });
+            } else {
+                console.error('Error fetching alumni data:', await response.text()); // Log any errors
+            }
+        }
+
+        // Call the function to fetch the alumni data
+        fetchAlumni();
+    </script>
+</body>
+</html>

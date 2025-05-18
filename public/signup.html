@@ -1,0 +1,87 @@
+<!-- This HTML file serves as the registration form for alumni data -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"> <!-- Character encoding for the document -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Responsive design settings -->
+    <title>Alumni Data Registration</title> <!-- Title of the page -->
+    <style>
+        /* Basic styling for the body */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            margin: 0;
+            padding: 20px;
+            color: #333;
+        }
+        h1 {
+            text-align: center; /* Center the heading */
+            color: #2c3e50; /* Heading color */
+        }
+        form {
+            max-width: 600px; /* Maximum width of the form */
+            margin: 0 auto; /* Center the form */
+            background: white; /* Background color of the form */
+            padding: 20px; /* Padding inside the form */
+            border-radius: 8px; /* Rounded corners */
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Shadow effect */
+        }
+        label {
+            display: block; /* Labels are block elements */
+            margin-bottom: 8px; /* Space below labels */
+            font-weight: bold; /* Bold text for labels */
+        }
+        input[type="text"],
+        input[type="email"] {
+            width: 100%; /* Full width inputs */
+            padding: 10px; /* Padding inside inputs */
+            margin-bottom: 15px; /* Space below inputs */
+            border: 1px solid #ddd; /* Border style */
+            border-radius: 4px; /* Rounded corners */
+            font-size: 16px; /* Font size */
+        }
+        button {
+            width: 100%; /* Full width button */
+            padding: 10px; /* Padding inside button */
+            background-color: #2c3e50; /* Button background color */
+            color: white; /* Button text color */
+            border: none; /* No border */
+            border-radius: 4px; /* Rounded corners */
+            font-size: 16px; /* Font size */
+            cursor: pointer; /* Pointer cursor on hover */
+        }
+        button:hover {
+            background-color: #1a252f; /* Darker background on hover */
+        }
+    </style>
+</head>
+<body>
+    <h1>Registration Form</h1> <!-- Main heading for the form -->
+    <form id="signupForm"> <!-- Form for user registration -->
+        <label for="fullName">Full Name:</label>
+        <input type="text" id="fullName" name="fullName" required><br> <!-- Input for full name -->
+
+        <label for="batch">Batch:</label>
+        <input type="text" id="batch" name="batch" required><br> <!-- Input for batch -->
+
+        <label for="department">Department:</label>
+        <input type="text" id="department" name="department" required><br> <!-- Input for department -->
+
+        <label for="phoneNumber">Phone Number:</label>
+        <input type="text" id="phoneNumber" name="phoneNumber" required><br> <!-- Input for phone number -->
+
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required><br> <!-- Input for email -->
+
+        <label for="jobTitle">Job Title:</label>
+        <input type="text" id="jobTitle" name="jobTitle" required><br> <!-- Input for job title -->
+
+        <label for="place">Company:</label>
+        <input type="text" id="place" name="place" required><br> <!-- Input for company name -->
+
+        <button type="submit">Submit</button> <!-- Submit button -->
+    </form>
+
+    <script src="script.js"></script> <!-- Link to external JavaScript file -->
+</body>
+</html>
